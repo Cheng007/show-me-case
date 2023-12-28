@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>simple test</title>
+    <script src="./drop.js" defer type="module"></script>
+    <script src="./sort.js" defer type="module"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      #drag {
+        width: 20px;
+        height: 20px;
+        background: gray;
+      }
+      #target {
+        width: 30vw;
+        aspect-ratio: 1 / 1;
+        border: 1px solid red;
+      }
+      .list > div {
+        width: 100%;
+        height: 40px;
+        background: orange;
+        margin: 10px 0 ;
+        border: 1px solid gray;
+      }
+      .list > div.moving {
+        background: none;
+        border: 1px dashed gray;
+      }
+    </style>
+    <style>
+      .drop-wrap {
+        display: flex;
+        align-items: start;
+        gap: 20px;
+      }
+      .subject {
+        position: relative;
+      }
+      .subject > div {
+        margin-bottom: 10px;
+      }
+      .subject-item {
+        width: 80px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        background: orange;
+      }
+      .subject-item.moving {
+        background: none;
+        border: 1px dashed gray;
+      }
+      .delete-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: red;
+        color: #fff;
+        border-radius: 10px;
+      }
+      .delete-area.moving {
+        display: flex;
+      }
+      table {
+        border: 1px solid gray;
+        border-spacing: 0;
+      }
+      td {
+        border: 1px solid gray;
+        width: 82px;
+        height: 42px;
+        padding: 0;
+      }
+      td[data-drop="true"].enter {
+        background: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>拖动排序</h2>
+    <div class="list" >
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+    </div>
+    <h2>拖拽</h2>
+    <div class="drop-wrap">
+      <div class="subject">
+        <div class="subject-item" data-effect="copy" draggable="true">语文</div>
+        <div class="subject-item" data-effect="copy" draggable="true">数学</div>
+        <div class="subject-item" data-effect="copy" draggable="true">英语</div>
+        <div class="subject-item" data-effect="copy" draggable="true">物理</div>
+        <div class="delete-area">拖到此删除</div>
+      </div>
+      <table>
+        <tr>
+          <td></td>
+          <td>星期一</td>
+          <td>星期二</td>
+          <td>星期三</td>
+          <td>星期四</td>
+        </tr>
+        <tr>
+          <td>第一节</td>
+          <td data-drop="true"></td>
+          <td data-drop="true"></td>
+          <td data-drop="true"></td>
+          <td data-drop="true"></td>
+        </tr>
+        <tr>
+          <td>第二节</td>
+          <td data-drop="true"></td>
+          <td data-drop="true"></td>
+          <td data-drop="true"></td>
+          <td data-drop="true"></td>
+        </tr>
+        <tr>
+          <td>第三节</td>
+          <td data-drop="true"></td>
+          <td data-drop="true"></td>
+          <td data-drop="true"></td>
+          <td data-drop="true"></td>
+        </tr>
+        <tr>
+          <td>第四节</td>
+          <td data-drop="true"></td>
+          <td data-drop="true"></td>
+          <td data-drop="true"></td>
+          <td data-drop="true"></td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
