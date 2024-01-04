@@ -4,6 +4,7 @@
 - [图片图标换色](./img-color-change/index.html)
 - [Flip 动画](./flip/index.html)
 - [拖动](./drag/index.html)
+- [文件分片上传](./chunk-upload/front-end/index.html)
 - [Vue 3](./vite-project/index.html)
 响应式
 beforeUpdate
