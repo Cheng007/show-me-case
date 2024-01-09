@@ -48,6 +48,7 @@ const doubleCount = ref(props.count * 2)
 
 <template>
   <div>
+    <h1>Reactive</h1>
     <div>props count: {{ props.count }}</div>
     <div>doubleCount: {{ doubleCount }}</div>
   </div>

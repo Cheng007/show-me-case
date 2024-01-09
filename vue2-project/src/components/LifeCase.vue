@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>Life Case</h1>
     <button @click="add">count + 1</button>
     <div>count: {{ count }}</div>
   </div>

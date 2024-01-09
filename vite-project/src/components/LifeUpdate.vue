@@ -18,6 +18,7 @@ onUpdated(() => {
 </script>
 
 <template>
+  <h1>Life Update</h1>
   <div>数字: {{ num }}</div>
 </template>
 

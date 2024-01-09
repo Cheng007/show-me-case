@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<script src="index.js" type="module" defer></script>
+</head>
+<body>
+  <h1>合成事件-中文输入法</h1>
+  <p>使用中文输入法时输入过程也会触发 input 事件，可以使用composition（合成）事件，过滤掉中间过程</p>
+  <p>请在下面输入框中同时输入中英文观察：</p>
+  
+  <input />
+  
+  <h2>input value:</h2>
+  <div id="inputValue"></div>
+  
+  <h2>composed value:</h2>
+  <div id="composedValue"></div>
+
+  <p>合成事件：与文本输入相关的事件；“间接”输入文本（而不是直接使用常规的键盘输入）。
+    例如，使用语音转文字的引擎，或使用特殊的组合键以将键入的内容表示成另一种语言中的字符。</p>
+</body>
+</html>

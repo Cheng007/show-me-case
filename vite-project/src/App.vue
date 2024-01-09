@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import Reactive from './components/Reactive.vue'
 import LifeUpdate from './components/LifeUpdate.vue'
+import Composition from './components/Composition.vue'
 
 let count = ref(1)
 const onClick = () => {
@@ -14,6 +15,7 @@ const onClick = () => {
   <button @click="onClick">Count 加 1</button>
   <Reactive :count="count" />
   <LifeUpdate />
+  <Composition />
 </template>
 
 <style scoped>

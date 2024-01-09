@@ -1,16 +1,19 @@
 <template>
   <div id="app">
-    <LifeCase></LifeCase>
+    <LifeCase />
+    <CompositionCase />
   </div>
 </template>
 
 <script>
 import LifeCase from './components/LifeCase.vue'
+import CompositionCase from './components/CompositionCase.vue'
 
 export default {
   name: 'App',
   components: {
-    LifeCase
+    LifeCase,
+    CompositionCase
   },
 }
 </script>
