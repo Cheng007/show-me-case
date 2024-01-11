@@ -12,3 +12,4 @@ beforeUpdate
 beforeUpdate
 - [合成事件-中文输入法](./composition/index.html)
 - [访问文件夹](./access-directory/index.html)
+- [主题跟随系统切换](./perform-theme/index.html)

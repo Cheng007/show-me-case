@@ -37,6 +37,21 @@ export function concatenate(resultConstructor, ...arrays) {
 }
 
 /**
+ * 获取 bufferSource 指纹
+ * @param {ArrayBufferView | ArrayBuffer} bufferSource
+ * @returns 
+ * sha-1 加密后的 16 进制指纹
+ */
+export async function getBufferDigest(bufferSource) {
+  const arrayBuffer = await crypto.subtle.digest('SHA-1', bufferSource)
+  
+  return Array.from(new Uint8Array(arrayBuffer))
+    // 转 16 进制
+    .map(i => i.toString(16).padStart(2, '0'))
+    .join('')
+}
+
+/**
  * 获取文件摘要（文件指纹）
  * @param {File} file 
  * @returns 
@@ -48,7 +63,7 @@ export function concatenate(resultConstructor, ...arrays) {
  * 3. 文件过大处理会很耗时，可以采用 webworker 防止主线程卡死
  */
 export async function getFileDigest(file) {
-  let hashes = new Uint8Array()
+  let bufferSource = new Uint8Array()
 
   const processChunk = (chunk) => {
     return new Promise((resolve, reject) => {
@@ -58,7 +73,7 @@ export async function getFileDigest(file) {
         crypto.subtle.digest('SHA-1', e.target.result)
           .then(res => {
             const hashArray = new Uint8Array(res)
-            hashes = concatenate(Uint8Array, hashes, hashArray)
+            bufferSource = concatenate(Uint8Array, bufferSource, hashArray)
             resolve(hashArray)
           })
           .catch(reject)
@@ -74,23 +89,45 @@ export async function getFileDigest(file) {
     await processChunk(chunk)
   }
 
-  const finialArrayBuffer = await crypto.subtle.digest('SHA-1', hashes)
-
-  // hash 转 16 进制
-  const hashHex = Array.from(new Uint8Array(finialArrayBuffer))
-    .map(i => i.toString(16).padStart(2, '0'))
-    .join('')
-
+  const hashHex = await getBufferDigest(bufferSource)
   return hashHex
 }
 
-let worker
-export function getFileDigestFromWorker(file) {
-  return new Promise((resolve, reject) => {
-    // worker 须指明 type 为 module，不然里面不能使用 import
-    worker = worker || new Worker('./worker.js', { type: 'module' })
-    worker.postMessage(file)
-    worker.onmessage = e => resolve(e.data)
-    worker.onerror = reject
-  })
+/**
+ * 异步任务并发数限制
+ * @param {(() => Promise)[]} tasks 异步任务列表
+ * @param {number} limit 并发任务数量
+ * @returns 
+ * @example
+ * const p = (data, delay) => {
+ *   return new Promise((resolve => {
+ *     setTimeout(() => resolve(data), 1000 * delay)
+ *   }))
+ * }
+ * const tasks = [
+ *   () => p('吃饭', 5),
+ *   () => p('睡觉', 6),
+ *   () => p('打豆豆', 10),
+ *   () => p('上课', 2),
+ *   () => p('锻炼', 6),
+ * ]
+ * runTaskWithLimit(tasks, 2).finally(res => console.log(res))
+ */
+export async function runTaskWithLimit(tasks, limit) {
+  const pool = new Set()
+  const promises = []
+
+  for (let task of tasks) {
+    const promiseItem = Promise.resolve(task())
+    promises.push(promiseItem)
+    pool.add(promiseItem)
+
+    promiseItem.finally(() => pool.delete(promiseItem))
+
+    if (pool.size >= limit) {
+      await Promise.race(pool)
+    }
+  }
+
+  return Promise.allSettled(promises)
 }

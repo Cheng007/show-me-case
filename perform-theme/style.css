@@ -1,0 +1,14 @@
+body {
+  background: var(--background);
+  color: var(--color);
+}
+
+body[data-theme="dark"] {
+  --color: #fff;
+  --background: #000;
+}
+
+body[data-theme="light"] {
+  --color: #000;
+  --background: #fff;
+}
