@@ -11,3 +11,4 @@ beforeUpdate
 - [Vue 2](./vue2-project/public/index.html)
 beforeUpdate
 - [合成事件-中文输入法](./composition/index.html)
+- [访问文件夹](./access-directory/index.html)

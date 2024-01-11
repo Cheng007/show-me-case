@@ -1,0 +1,61 @@
+* {
+  box-sizing: border-box;
+}
+main {
+  --aside: 200px;
+  --border-color: gray;
+  display: flex;
+  width: calc(100vw - 20px);
+  height: 80vh;
+  border: 1px solid var(--border-color);
+  margin: 10px 0;
+  opacity: 0;
+}
+.folder-wrap {
+  height: 100%;
+  overflow: auto;
+  width: var(--aside);
+  background: #6a6a6a;
+  color: #fff;
+  border-right: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+pre {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  overflow: auto;
+}
+.context-wrap {
+  height: 100%;
+  overflow: auto;
+  flex: 1;
+}
+.folder {
+  display: none;
+  text-indent: 10px;
+  cursor: default;
+}
+.folder.active {
+  display: block;
+  margin-left: 20px;
+  border-left: 1px solid #c6c6c6;
+}
+.folder-wrap > .folder {
+  display: block;
+}
+.folder-name {
+  display: flex;
+  align-items: center;
+}
+.folder-name::before {
+  display: block;
+  content: '▸';
+}
+.folder-name.active::before {
+  content: '▾';
+}
+.file-name.active {
+  font-weight: 600;
+  color: rgb(3, 203, 116);
+}
