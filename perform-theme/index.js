@@ -3,6 +3,7 @@ const select = document.querySelector('select')
 let selectedTheme = localStorage.getItem('theme') || 'light'
 select.value = selectedTheme
 
+// @media (prefers-color-scheme: dark) { }
 const prefers = window.matchMedia('(prefers-color-scheme: dark)')
 let osTheme = prefers.matches ? 'dark' : 'light'
 prefers.onchange = (e) => {
