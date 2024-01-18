@@ -3,8 +3,13 @@ import checkFile from './control/check-file.mjs'
 import gluingChunk from './control/gluing-chunk.mjs'
 import uploadChunk from './control/upload-chunk.mjs'
 
+import { fileDigestInfoFile } from './config.mjs'
+import { ensurePath } from './util.mjs'
+
 const app = express()
-const port = 3000
+const port = 3001
+
+ensurePath(fileDigestInfoFile)
 
 // CORS
 app.use('/api/*', (req, res, next) => {
@@ -13,10 +18,10 @@ app.use('/api/*', (req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
   next()
 })
-app.get('/api/checkFile', checkFile)
+app.post('/api/checkFile', checkFile)
 app.post('/api/uploadChunk', uploadChunk)
 app.post('/api/gluingChunk', gluingChunk)
 
 app.listen(port)
-console.log('Express started on port 3000');
+console.log('Express started on port 3001');
 

@@ -1,4 +1,4 @@
-const backendApiOrigin = 'http://127.0.0.1:3000'
+const backendApiOrigin = 'http://127.0.0.1:3001'
 const apiPathname = {
   // 检查文件上传信息（是否上传过，已经上传的chunk指纹）
   checkFile: '/api/checkFile',
@@ -22,8 +22,9 @@ const genFormData = (jsonData) => {
  * @returns
  */
 export const checkFile = async (fileDigest) => {
-  return fetch(backendApiOrigin + apiPathname.checkFile + `?fileDigest=${fileDigest}`, {
-    method: 'GET',
+  return fetch(backendApiOrigin + apiPathname.checkFile, {
+    method: 'POST',
+    body: genFormData({ fileDigest })
   })
     .then(res => res.json())
 }
@@ -31,14 +32,15 @@ export const checkFile = async (fileDigest) => {
 /**
  * 通知后端粘合分片
  * @param {string} fileDigest
- * @param {number} chunkSize
+ * @param {string} filename
  * @returns 
  */
-export const gluingChunk = async (fileDigest, chunkSize) => {
+export const gluingChunk = async (fileDigest, filename) => {
   return fetch(backendApiOrigin + apiPathname.gluingChunk, {
     method: 'POST',
-    body: genFormData({ fileDigest, chunkSize })
+    body: genFormData({ fileDigest, filename })
   })
+  .then(res => res.json())
 }
 
 /**

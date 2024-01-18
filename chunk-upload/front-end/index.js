@@ -66,6 +66,11 @@ inputEle.addEventListener('change', async (e) => {
     }
   }
 
+  await Promise.all(promises)
+
   // 所有文件上传成功后通知后端合并文件
-  await gluingChunk(digest, chunks.length)
+  const { success } = await gluingChunk(digest, file.name)
+  if (success) {
+    alert('上传成功')
+  }
 })

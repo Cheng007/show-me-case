@@ -3,7 +3,7 @@
  * @param {File} file 要分片的文件
  * @param {number} chunSizeMb 单个分片大小，单位 Mb
  */
-export function sliceFile(file, chunSizeMb = 10) {
+export function sliceFile(file, chunSizeMb = 1) {
   const { size } = file
   const chunSize = chunSizeMb * 1024 * 1024
   const length = Math.ceil(size / chunSize)
