@@ -12,7 +12,7 @@ const handleInput = (e: Event) => {
 </script>
 
 <template>
-  <h1>Composition</h1>
+  <h1>Composition 合成事件</h1>
   <p>v-model 默认已经处理了合成事件</p>
   <input v-model="inputValue" @input="handleInput" />
   <p>v-model：{{ inputValue }}</p>

@@ -1,22 +1,27 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import Reactive from './components/Reactive.vue'
-import LifeUpdate from './components/LifeUpdate.vue'
-import Composition from './components/Composition.vue'
-
-let count = ref(1)
-const onClick = () => {
-  count.value += 1
-}
+import { routes } from './router'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+// router.replace(routes[0].path)
 </script>
 
 <template>
-  响应式demo
-  <button @click="onClick">Count 加 1</button>
-  <Reactive :count="count" />
-  <LifeUpdate />
-  <Composition />
+  <div class="wrap">
+    <aside>
+      <router-link tag="div" v-for="i of routes" :to="i.path">{{ i.name }}</router-link>
+    </aside>
+    <main>
+      <router-view />
+    </main>
+  </div>
 </template>
 
 <style scoped>
+aside {
+  display: flex;
+  justify-content: space-evenly;
+  border-bottom: 1px solid red;
+  padding: 10px 0;
+  margin: 10px;
+}
 </style>
