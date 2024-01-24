@@ -15,3 +15,4 @@ beforeUpdate
 - [主题跟随系统切换](./perform-theme/index.html)
 - [利用延迟实现可交互动画](./animation-delay/index.html)
 - [点击事件](./click-event/index.html)
+- [流式输入文字-前后端](./stream/frontend/index.html)
