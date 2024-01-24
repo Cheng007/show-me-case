@@ -1,5 +1,6 @@
 import path from 'path'
 
+// 可以使用 os.tmpDir()
 export const fileTempDir = path.resolve(path.resolve(), './temp/')
 // 就不用数据库了，暂时将已上传文件指纹数据保存到文件里
 export const fileDigestInfoFile = path.resolve(fileTempDir, './fileDigestInfo.txt')

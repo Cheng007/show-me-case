@@ -16,3 +16,4 @@ beforeUpdate
 - [利用延迟实现可交互动画](./animation-delay/index.html)
 - [点击事件](./click-event/index.html)
 - [流式输入文字-前后端](./stream/frontend/index.html)
+- [请求进度](./request-process/front-end/index.html)
