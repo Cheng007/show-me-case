@@ -1,7 +1,7 @@
 import path from 'path'
 import fs from 'fs'
 import express from 'express'
-import multer from 'multer'
+import multiparty from 'multiparty'
 
 const app = express()
 const port = 3001
@@ -22,29 +22,22 @@ app.use('*', (req, res, next) => {
 
 app.use(express.static('static'))
 
-// 配置 Multer
-const storage = multer.memoryStorage(); // 存储在内存中
-const upload = multer({
-  dist: 'temp',
-  storage: storage,
-  limits: { fileSize: 1024 * 1024 * 100 }, // 限制文件大小为 100MB
-});
+app.post('/api/upload', (req, res) => {
+  const form = new multiparty.Form({
+    uploadDir
+  })
+  form.parse(req, async (err, fields, files) => {
+    if (err) {
+      console.log(err)
+      res.status(500).send('文件上传失败')
+      return
+    }
 
-// 处理文件上传请求
-app.post('/api/upload', upload.single('file'), (req, res) => {
-  // 在这里可以访问上传的文件：req.file
+    res.end('上传成功')
+  })
 
-  console.log(req.file)
-  // res.writeHead(200, {
-  //   'Content-Length': req.file.size,
-  //   'Content-Encoding': 'utf-8'
-  // })
-  res.setHeader('Content-Length', 4363720)
-  // res.setHeader('Content-Encoding', 'utf-8')
-
-  // 处理上传完成后的逻辑
-  res.send('File uploaded successfully!');
-});
+  form.on('progress', e => console.log('progress', e))
+})
 
 app.listen(port)
 console.log('Express started on port 3001');

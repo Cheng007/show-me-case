@@ -8,12 +8,16 @@
 <meta name="description" content="">
 <meta name="keywords" content="">
 <link href="" rel="stylesheet">
-<script src="./index.js" defer></script>
+<script src="./index.js" type="module"></script>
 </head>
 <body>
   <h1>请求进度</h1>
+  <p>上传进度监听：xhr.upload.addEventListener('progress', e => {})</p>
+  <p>下载进度监听：xhr.addEventListener('progress', e => {})</p>
   <input type="file" />
   <button>下载文件</button>
-  <div class="log"></div>
+  <div>
+    进度：<input type="range" min="0" max="100" value="0" />
+  </div>
 </body>
 </html>
