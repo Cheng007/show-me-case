@@ -18,3 +18,4 @@ beforeUpdate
 - [流式输入文字-前后端](./stream/frontend/index.html)
 - [请求进度](./request-process/front-end/index.html)
 - [Koa洋葱模型](./onion/index.mjs)
+- [可替换元素下面空白行问题](./replace-element/index.html)

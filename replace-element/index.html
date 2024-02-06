@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="./style.css" rel="stylesheet">
+<script src="./index.js" type="module"></script>
+</head>
+<body>
+  <h1>可替换元素下面空白行问题</h1>
+  <p>可替换行内元素默认下面会有空白行，元素宽高设置能生效，margin和padding的上下也能生效</p>
+  <button class="block">通过display:block解决</button>
+  <button class="vertical-align">设置vertical-align</button>
+  <button class="font-size">设置父元素font-size为 0</button>
+  <button class="line-height">设置父元素line-height为 0</button>
+  <h2>iframe[inline]</h2>
+  <div class="wrap">
+    <iframe></iframe>
+  </div>
+  <h2>video[inline]</h2>
+  <div class="wrap">
+    <video></video>
+  </div>
+  <h2>embed[inline]</h2>
+  <div class="wrap">
+    <embed type="video/quicktime" src="movie.mov" />
+  </div>
+  <h2>img[inline]</h2>
+  <div class="wrap">
+    <img src="" />
+  </div>
+  <h2>canvas[inline]</h2>
+  <div class="wrap">
+    <canvas></canvas>
+  </div>
+  <h2>input type image [inline-block]</h2>
+  <div class="wrap">
+    <input type="image" src="https://interactive-examples.mdn.mozilla.net/media/examples/login-button.png" />
+  </div>
+</body>
+</html>
