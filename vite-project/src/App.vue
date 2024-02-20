@@ -8,7 +8,13 @@ const router = useRouter()
 <template>
   <div class="wrap">
     <aside>
-      <router-link tag="div" v-for="i of routes" :to="i.path">{{ i.name }}</router-link>
+      <router-link
+        custom
+        v-slot="{ navigate, isActive }"
+        v-for="i of routes" :to="i.path"
+      >
+        <div @click="navigate" :class="isActive ? 'active' : ''">{{ i.name }}</div>
+      </router-link>
     </aside>
     <main>
       <router-view />
@@ -20,8 +26,14 @@ const router = useRouter()
 aside {
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 10px;
   border-bottom: 1px solid red;
   padding: 10px 0;
   margin: 10px;
+  cursor: default;
+  > .active {
+    color: red;
+  }
 }
 </style>
