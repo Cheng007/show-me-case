@@ -59,7 +59,7 @@ export async function getBufferDigest(bufferSource) {
  * 1. 可以有多种算法获取文件摘要，如：MD5,SHA-1,SHA-256...
  * 这里使用浏览器支持的 SHA-1 算法获取指纹（还不支持 MD5）
  * 见：https://developer.mozilla.org/zh-CN/docs/Web/API/SubtleCrypto/digest
- * 2. 分快计算文件摘要，防止内存爆掉而报错
+ * 2. 分块计算文件摘要，防止内存爆掉而报错
  * 3. 文件过大处理会很耗时，可以采用 webworker 防止主线程卡死
  */
 export async function getFileDigest(file) {
