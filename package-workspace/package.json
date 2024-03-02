@@ -1,0 +1,15 @@
+{
+  "name": "package-workspace",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"hello workspace\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "packages/a",
+    "app/main"
+  ]
+}

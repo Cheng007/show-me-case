@@ -21,3 +21,4 @@ beforeUpdate
 - [可替换元素下面空白行问题](./replace-element/index.html)
 - [子进程](./child-process/spawn/spawn1.mjs)
 - [跨标签页通信](./crose-tab-communication/localstorage/index.html)
+- [npm workspace](./package-workspace/README.md)
