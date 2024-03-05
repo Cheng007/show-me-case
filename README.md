@@ -23,3 +23,5 @@ beforeUpdate
 - [跨标签页通信](./crose-tab-communication/localstorage/index.html)
 - [npm workspace](./package-workspace/README.md)
 - [位运算实现组合权限](./combination-permissions/index.html)
+- [WebSocket聊天室](./web-socket/frontend/index.html)
+- [webpack](./webpack/main.js)
