@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Parent</h1>
+  <button id="btn">点我给子 iframe 发消息</button>
+  <div id="btn1" onclick="console.log('parent event')">会被子页面触发的按钮</div>
+  <iframe src="./child.html" id="iframe" name="parentIframeName"></iframe>
+  <script>
+    const iframe = document.querySelector('iframe')
+
+    // 监听子页面的消息
+    iframe.onmessage = e => console.log('message from child', e)
+
+    function parentFunc(e) {
+      console.log(e)
+    }
+    let childWindow
+    iframe.onload = () => {
+      // 下面两种方式都行
+      childWindow = iframe.contentWindow
+      // childWindow = parentIframeName.window
+    }
+
+    document.querySelector('#btn').onclick = () => {
+      // 向子页面发消息
+      childWindow.postMessage({name: 'parent message', age: 10}, '*')
+
+      // 能拿到子页面的window，可以做很多事，如：
+      // 调用子页面的方法
+      childWindow.childFunc('trigger child page function')
+      // 触发子页面按钮事件
+      childWindow.document.querySelector('#btn1').click()
+    }
+  </script>
+</body>
+</html>

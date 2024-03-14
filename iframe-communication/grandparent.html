@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Grandparent</h1>
+  <p>iframe父子通信</p>
+
+
+  <iframe src="./parent.html" name="grandparent" width="500" height="500"></iframe>
+  <div id="btn1" onclick="console.log('grandparent event')">会被子孙触发点击事件</div>
+</body>
+</html>

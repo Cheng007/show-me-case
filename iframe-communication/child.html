@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Child</h1>
+  <button id="btn">发消息</button>
+  <div id="btn1" onclick="console.log('child event')">会被父页面触发的按钮</div>
+  <script>
+    window.onmessage = e => {
+      console.log('message from parent', e)
+    }
+    function childFunc (e) {
+      console.log(e)
+    }
+    
+    
+    if (window.parent != window.top) {
+      console.log('至少有三层窗口')
+    }
+
+    document.querySelector('#btn').onclick = () => {
+      console.log('window', window, window.parent)
+      // TODO:正常是通过window.parent就能拿到了，但此处确需要从[0]中拿，why?
+      window.parent[0].postMessage('message from child', '*')
+
+      // 能拿到父页面的window，可以做很多事，如：
+      // 调用父页面的事件
+      window.parent.parentFunc('trigger parent page function')
+      // 触发顶层页面按钮事件
+      window.top.document.querySelector('#btn1').click()
+    }
+  </script>
+</body>
+</html>
