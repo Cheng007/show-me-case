@@ -27,3 +27,4 @@ beforeUpdate
 - [webpack](./webpack/main.js)
 - [各种宽度](./width/index.html)
 - [iframe](./iframe-communication/grandparent.html)
+- [响应式图片设置](./img-size/index.html)
