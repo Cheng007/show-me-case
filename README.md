@@ -28,3 +28,4 @@ beforeUpdate
 - [各种宽度](./width/index.html)
 - [iframe](./iframe-communication/grandparent.html)
 - [响应式图片设置](./img-size/index.html)
+- [动态执行脚本](./execString/index.html)
