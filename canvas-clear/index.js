@@ -4,14 +4,15 @@ const canvasWrap = document.querySelectorAll('ul li')
 // 显示尺寸（css 样式尺寸）
 const size = getComputedStyle(canvasWrap[0].querySelector('canvas')).width.replace('px', '')
 
+// 默认情况下，当dpr大于 1 时图片就会不清晰
 function drawDefault() {
   const canvas = canvasWrap[0].querySelector('canvas')
   const infoEl = canvasWrap[0].querySelector('.placeholder')
   const ctx = canvas.getContext('2d')
 
   // 原始尺寸
-  canvas.width = 200
-  canvas.height = 200
+  canvas.width = size
+  canvas.height = size
 
   // 画图
   ctx.beginPath()
@@ -24,6 +25,7 @@ function drawDefault() {
   showInfo(infoEl, canvas)
 }
 
+// 处理方式 1：canvas 原始尺寸放大 dpr倍，同时图形设置里的相关尺寸也手动放大 DPR 倍
 function draw1() {
   const canvas = canvasWrap[1].querySelector('canvas')
   const infoEl = canvasWrap[1].querySelector('.placeholder')
@@ -45,6 +47,7 @@ function draw1() {
   showInfo(infoEl, canvas)
 }
 
+// 推荐处理方式：canvas 原始尺寸放大 DPR 倍，然后直接画布整体放大 DPR 倍，其他不变
 function draw2() {
   const canvas = canvasWrap[2].querySelector('canvas')
   const infoEl = canvasWrap[2].querySelector('.placeholder')
@@ -54,9 +57,8 @@ function draw2() {
   // 原始尺寸：放大 DPR 倍
   canvas.width = size * dpr
   canvas.height = size * dpr
-  console.log('dpr', dpr)
 
-  // 然后直接画布整体放大 DPR 倍
+  // 然后直接画布整体放大 DPR 倍，其他不变
   ctx.scale(dpr, dpr)
 
   // 画图
