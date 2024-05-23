@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<style>
+  ul {
+    list-style: none;
+  }
+  canvas {
+    background: #000;
+    width: 200px;
+    height: 200px;
+  }
+</style>
+<script src="./index.js" type="module"></script>
+</head>
+<body>
+  <h1>Canvas 不清晰问题</h1>
+  <p>原始尺寸 >= 样式尺寸 * DPR时会清晰</p>
+  <p>缩放页面，查看效果</p>
+  <div id="info"></div>
+  
+  <ul id="canvas-wrap">
+    <li>
+      <canvas></canvas>
+      <div>默认效果</div>
+      <div class="placeholder"></div>
+    </li>
+    <li>
+      <canvas></canvas>
+      <div>处理方式 1：canvas 原始尺寸放大 dpr倍，同时图形设置里的相关尺寸也手动放大 DPR 倍。</div>
+      <div class="placeholder"></div>
+    </li>
+    <li>
+      <canvas></canvas>
+      <div>推荐处理方式：canvas 原始尺寸放大 DPR 倍，然后直接画布整体放大 DPR 倍，其他不变</div>
+      <div class="placeholder"></div>
+    </li>
+  </ul>
+  
+</body>
+</html>
