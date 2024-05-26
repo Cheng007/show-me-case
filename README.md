@@ -1,6 +1,6 @@
 # Show Me Case
 
-大部分 Case 都可以通过启动一个服务器访问，少部分 Case 同时包含前后端代码，需要启动前后端服务器后才能正常运行
+大部分 Case 可以通过启动一个服务器访问，少部分 Case 同时包含前后端代码，需要启动前后端服务器后才能正常运行
 
 - [大文件数据请求处理-分块加载](./big-fetch-text/index.html)
 - [图片图标换色](./img-color-change/index.html)
@@ -32,3 +32,4 @@ beforeUpdate
 - [响应式图片设置](./img-size/index.html)
 - [Canvas不清晰问题](./canvas-clear/index.html)
 - [动态执行脚本](./execString/index.html)
+- [模拟Vue简单依赖收集](./vue-dep/index.html)
