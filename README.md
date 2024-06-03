@@ -3,6 +3,7 @@
 大部分 Case 可以通过启动一个服务器访问，少部分 Case 同时包含前后端代码，需要启动前后端服务器后才能正常运行
 
 - [大文件数据请求处理-分块加载](./big-fetch-text/index.html)
+- [区域框选](./select-range/index.html)
 - [图片图标换色](./img-color-change/index.html)
 - [Flip 动画](./flip/index.html)
 - [拖动](./drag/index.html)
