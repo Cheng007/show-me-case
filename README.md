@@ -6,6 +6,7 @@
 - [区域框选](./select-range/index.html)
 - [图片图标换色](./img-color-change/index.html)
 - [Flip 动画](./flip/index.html)
+- [display none 与 block 高度动画](./height-animation/index.html)
 - [拖动](./drag/index.html)
 - [文件分片上传-前后端](./chunk-upload/front-end/index.html)
 - [Vue 3](./vite-project/index.html)
