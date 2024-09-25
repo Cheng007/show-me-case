@@ -35,3 +35,4 @@ beforeUpdate
 - [Canvas不清晰问题](./canvas-clear/index.html)
 - [动态执行脚本](./execString/index.html)
 - [模拟Vue简单依赖收集](./vue-dep/index.html)
+- [兼容性处理-aspect-ratio](./polify/aspect-ratio/index.html)

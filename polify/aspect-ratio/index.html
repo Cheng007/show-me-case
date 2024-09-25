@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .demo {
+      width: 30%;
+      background: gray;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    .demo1 {
+      aspect-ratio: 1 / 1;
+    }
+    .demo2 {
+      position: relative;
+      width: 30%;
+      padding-top: 30%;
+    }
+    .demo2 > span {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+    }
+    .demo3 {
+      &::before {
+        float: left;
+        padding-top: 100%;
+        content: '';
+      }
+      &::after {
+        display: block;
+        content: '';
+        clear: both;
+      }
+    }
+  </style>
+</head>
+<body>
+  <p>css aspect-ratio 属性大面积得到浏览器支持是2021年（参看 can i use），所以在当前使用的话还需要处理兼容性</p>
+  <div>
+    <div class="demo demo1">
+      用 aspect-ratio 实现 1:1 宽高比
+    </div>
+    <div class="demo demo2">
+      <span>
+        通过 padding-top/bottom 百分比（top bottom 百分比基于包含块的宽度） 实现 1:1
+      </span>
+    </div>
+    <div class="demo demo3">
+      通过 padding-top/bottom 百分比（top bottom 百分比基于包含块的宽度） 实现 1:1
+    </div>
+    <div>如果有使用 postcss ，可以插件：npm i -D postcss-aspect-ratio-polyfill， 原理和上面一样</div>
+  </div>
+  <script>
+    const isSupport = CSS.supports('aspect-ratio', '1 / 1')
+    const span = document.createElement('span')
+    span.textContent = `浏览器是否支持aspect-ratio: ${isSupport}`
+    document.body.appendChild(span)
+  </script>
+</body>
+</html>
