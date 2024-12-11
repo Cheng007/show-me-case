@@ -37,3 +37,4 @@ beforeUpdate
 - [模拟Vue简单依赖收集](./vue-dep/index.html)
 - [兼容性处理-aspect-ratio](./polify/aspect-ratio/index.html)
 - [html](./html/index.html)
+- [history](./history/index.html)

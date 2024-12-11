@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>History API Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    button {
+      margin: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>History API Demo</h1>
+  <p>Click the buttons below to change the history state and see the popstate event in action.</p>
+  <button onclick="changeHistory()">Change History (pushState)</button>
+  <button onclick="replaceHistory()">Replace History (replaceState)</button>
+  <button onclick="goBack()">Go Back</button>
+  <button onclick="goForward()">Go Forward</button>
+
+  <p>popstate 在调用pushState或replaceState时不会触发，在调用back或forward等方法时会触发，点击浏览器前进后退也能触发</p>
+
+  <script>
+    // 添加一个事件监听器来监听 popstate 事件
+    window.addEventListener('popstate', function (event) {
+      console.log('location: ' + document.location + ', state: ' + JSON.stringify(event.state));
+      alert('Popstate event triggered!\nLocation: ' + document.location + '\nState: ' + JSON.stringify(event.state));
+    });
+
+    // 使用 pushState 改变历史记录
+    function changeHistory() {
+      history.pushState({ page: 1 }, "Title 1", "?page=1");
+      console.log('History changed with pushState');
+    }
+
+    // 使用 replaceState 改变历史记录
+    function replaceHistory() {
+      history.replaceState({ page: 2 }, "Title 2", "?page=2");
+      console.log('History changed with replaceState');
+    }
+
+    // 使用 back 方法返回上一页
+    function goBack() {
+      history.back();
+      console.log('Navigated back');
+    }
+
+    // 使用 forward 方法前进到下一页
+    function goForward() {
+      history.forward();
+      console.log('Navigated forward');
+    }
+  </script>
+</body>
+
+</html>
