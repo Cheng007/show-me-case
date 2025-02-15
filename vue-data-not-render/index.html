@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <!-- 引入样式文件 -->
+  <link rel="stylesheet" href="https://unpkg.com/vant@2.12/lib/index.css" />
+
+  <!-- 引入 Vue 和 Vant 的 JS 文件 -->
+  <script src="https://unpkg.com/vue@2.6/dist/vue.min.js"></script>
+  <script src="https://unpkg.com/vant@2.12/lib/vant.min.js"></script>
+  <script src="https://unpkg.com/vue-router@3.0.0/dist/vue-router.js"></script>
+</head>
+
+<body>
+  <div>
+    vue 中 data 数据已经变了，但数据未正确渲染，
+    此例子中使用了 van-action-sheet 组件，可以看到 list 已经多次变了，
+    但数据未渲染出来（在其它场景现象可能是 list 渲染条数不变或不正确）
+    其原因是 get-container="#app" 中 id 为app的元素重复定义，且最后一个id 为 app 的是 vue-router 的容器，van-action-sheet 内部应该会通过原生 js 拿到该 id
+    对应的元素，然后在该元素内 append 渲染 action-sheet 相关 dom 元素，而 vue 在该 id 内也会渲染相关元素，两者冲突，导致最后的 vue 元素未正确渲染
+  </div>
+  <div id="app"></div>
+
+  <script>
+    const component = {
+      template: `<div>
+              <van-button @click="onRefresh">
+                点我
+              </van-button>
+              <div>
+                {{ flag }}
+              </div>
+
+              <div
+                v-for="(a) of list"
+                :key="a.id"
+              >
+                <div>{{ a.driveCarCategoryName }}</div>
+              </div>
+
+              <van-action-sheet get-container="#app" />
+            </div>`,
+      data() {
+        return {
+          list: [],
+          flag: true,
+        };
+      },
+      mounted() {
+        this.getList();
+      },
+      methods: {
+        onRefresh() {
+          this.flag = !this.flag;
+          this.getList();
+        },
+        getList() {
+          const list = this.flag
+            ? [{ driveCarCategoryName: 'SL03', id: 1 }]
+            : [{ driveCarCategoryName: 'S07', id: 2 }, { driveCarCategoryName: 'S05', id: 3 }];
+          console.log('list', list);
+          this.list = list;
+          return;
+        },
+      },
+    }
+    const router = new VueRouter({
+      routes: [
+        {
+          path: '/',
+          component,
+        }
+      ]
+    })
+
+
+    new Vue({
+      el: '#app',
+      template: `<div id="app1"><router-view></router-view></div>`,
+      router,
+    });
+
+  </script>
+</body>
+
+</html>
