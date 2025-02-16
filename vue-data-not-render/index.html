@@ -16,11 +16,19 @@
 
 <body>
   <div>
-    vue 中 data 数据已经变了，但数据未正确渲染，
+    vue2 中 data 数据已经变了，但数据未正确渲染，
     此例子中使用了 van-action-sheet 组件，可以看到 list 已经多次变了，
     但数据未渲染出来（在其它场景现象可能是 list 渲染条数不变或不正确）
-    其原因是 get-container="#app" 中 id 为app的元素重复定义，且最后一个id 为 app 的是 vue-router 的容器，van-action-sheet 内部应该会通过原生 js 拿到该 id
-    对应的元素，然后在该元素内 append 渲染 action-sheet 相关 dom 元素，而 vue 在该 id 内也会渲染相关元素，两者冲突，导致最后的 vue 元素未正确渲染
+    (在 keep-alive 组件中，也可能有问题，遇到的现象是 list 个数减少能正确渲染，更增多就渲染不出来)
+
+    (van-action-sheet get-container vant@3 在实现上有一些bug，在 vant@4 后使用了 vue3 的 Telepart 后应该就没有这个问题了）
+
+    van-action-sheet get-container 属性找不到时会使用默认值，即挂载到当前组件下面，本例子中 #app 不存在（#app为vue入口，会被替换成普通 div 且没有 id 属性）
+
+    修改办法：将 van-action-sheet 套一层 div
+
+    组件 mixin 关系如下，get-container 最终是 portal 里面的，所以中间这一条链路都可能会出现上面类似的问题：
+    action-sheet -> popup -> portal
   </div>
   <div id="app"></div>
 
@@ -28,25 +36,32 @@
     const component = {
       template: `<div>
               <van-button @click="onRefresh">
-                点我
+                切换数据
               </van-button>
+              <van-button @click="showAction = !showAction">action</van-button>
               <div>
                 {{ flag }}
               </div>
 
               <div
-                v-for="(a) of list"
-                :key="a.id"
+                v-for="(item, idx) of list"
+                :key="idx"
               >
-                <div>{{ a.driveCarCategoryName }}</div>
+                <div>{{ item.name }}</div>
               </div>
 
-              <van-action-sheet get-container="#app" />
+              <div>
+                <van-action-sheet get-container="#app1" v-model="showAction" :actions="actions" />
+              </div>
             </div>`,
       data() {
         return {
           list: [],
-          flag: true,
+          flag: false,
+          showAction: false,
+          actions: [{
+            name: '操作'
+          }]
         };
       },
       mounted() {
@@ -59,12 +74,15 @@
         },
         getList() {
           const list = this.flag
-            ? [{ driveCarCategoryName: 'SL03', id: 1 }]
-            : [{ driveCarCategoryName: 'S07', id: 2 }, { driveCarCategoryName: 'S05', id: 3 }];
+            ? [{ name: '张三', id: 1 }]
+            : [{ name: '李四', id: 2 }, { name: '王五', id: 3 }];
           console.log('list', list);
           this.list = list;
           return;
         },
+        getContainer() {
+          return document.body.querySelector('#app1');
+        }
       },
     }
     const router = new VueRouter({
@@ -79,7 +97,7 @@
 
     new Vue({
       el: '#app',
-      template: `<div id="app1"><router-view></router-view></div>`,
+      template: `<main id="app1"><router-view></router-view></main>`,
       router,
     });
 
