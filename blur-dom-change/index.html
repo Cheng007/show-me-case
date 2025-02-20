@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>页面结构改变后是否失焦</title>
+</head>
+
+<body>
+  先自动聚集，之后改变页面结构，可以看到没有失焦
+  <input type="text" />
+
+  <script>
+    const input = document.querySelector('input');
+
+    input.addEventListener('blur', () => {
+      console.log('blur');
+    });
+
+    input.addEventListener('focus', () => {
+      console.log('blur');
+    });
+
+    // 自动聚焦
+    input.focus();
+
+    setTimeout(() => {
+      const div = document.createElement('div');
+      div.innerText = '向后面添加节点'
+      document.body.appendChild(div);
+    }, 5000)
+    setTimeout(() => {
+      const div = document.createElement('div');
+      div.innerText = '向前面添加节点'
+      const input = document.querySelector('input');
+      document.body.insertBefore(div, input)
+    }, 10 * 1000)
+
+
+  </script>
+</body>
+
+</html>
