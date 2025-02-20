@@ -9,10 +9,13 @@
 - [display none 与 block 高度动画](./height-animation/index.html)
 - [拖动](./drag/index.html)
 - [文件分片上传-前后端](./chunk-upload/front-end/index.html)
+- [importmap](./importmap/index.html)
 - [Vue 3](./vite-project/index.html)
 响应式
 beforeUpdate
 - [Vue 2](./vue2-project/public/index.html)
+- [vue activated](./vue-activated/index.html)
+- [页面结构变化后是否会导致失焦](./blur-dom-change/index.html)
 beforeUpdate
 - [合成事件-中文输入法](./composition/index.html)
 - [访问文件夹](./access-directory/index.html)
