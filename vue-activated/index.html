@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+
+  <script src="https://unpkg.com/vue@2.6/dist/vue.min.js"></script>
+</head>
+
+<body>
+  <div>
+    vue activated 触发时机：mounted 之后，在第一次初使化时也会触发
+  </div>
+  <div id="app"></div>
+
+  <script>
+    const ChildComponent = {
+      template: `<div>ChildComp</div>`,
+      mounted() {
+        console.log('childComp mounted')
+      },
+      activated() {
+        console.log('childComp activated')
+      }
+    }
+    const AliveComponent = {
+      template: `<div>
+        AliveComponent
+        <ChildComponent />
+      </div>`,
+      components: {
+        ChildComponent
+      },
+      mounted() {
+        console.log('AliveComponent mounted')
+      },
+      activated() {
+        console.log('AliveComponent activated')
+      }
+    }
+
+    new Vue({
+      el: '#app',
+      template: `<main>
+        <button @click="flag = !flag">切换</button>
+        <keep-alive>
+          <AliveComponent v-if="flag" />
+        </keep-alive>
+      </main>`,
+      components: {
+        AliveComponent,
+      },
+      data() {
+        return {
+          flag: true
+        }
+      },
+    });
+
+  </script>
+</body>
+
+</html>
