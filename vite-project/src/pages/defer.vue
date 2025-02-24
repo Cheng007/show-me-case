@@ -2,7 +2,6 @@
   import { ref, watch } from 'vue'
   import { useRoute, useRouter } from 'vue-router'
 
-  import HeavyComp from '../components/HeavyComp.vue';
   import { useDefer } from '../util/useDefer';
 
   const route = useRoute()

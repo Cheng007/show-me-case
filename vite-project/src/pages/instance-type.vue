@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import MyForm from '../components/MyForm.vue';
 import { useCompRef } from '../util/useCompRef';
 
