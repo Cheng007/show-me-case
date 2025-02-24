@@ -26,7 +26,6 @@ declare module 'vue-router/auto-routes' {
     '/life-update': RouteRecordInfo<'/life-update', '/life-update', Record<never, never>, Record<never, never>>,
     '/reactive': RouteRecordInfo<'/reactive', '/reactive', Record<never, never>, Record<never, never>>,
     '/scoped-deep/': RouteRecordInfo<'/scoped-deep/', '/scoped-deep', Record<never, never>, Record<never, never>>,
-    '/scoped-deep/components/Child': RouteRecordInfo<'/scoped-deep/components/Child', '/scoped-deep/components/Child', Record<never, never>, Record<never, never>>,
     '/vapor-mode.vapor': RouteRecordInfo<'/vapor-mode.vapor', '/vapor-mode/vapor', Record<never, never>, Record<never, never>>,
   }
 }

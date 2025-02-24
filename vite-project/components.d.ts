@@ -13,5 +13,6 @@ declare module 'vue' {
     Reactive: typeof import('./src/components/Reactive.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    VanButton: typeof import('vant/es')['Button']
   }
 }

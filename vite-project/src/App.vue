@@ -4,8 +4,8 @@ import { routes } from './router'
 
 const formatedRoutes = computed(() => {
   return routes
-    .filter(i => !(i.name as string)?.includes('['))
-    .map(i => ({  ...i, name: (i.name as string)?.replace('/', '') }))
+    .filter(i => i.children || !(i.name as string)?.includes('['))
+    .map(i => ({  ...i, name: (i.name as string || i.path)?.replace('/', '') }))
 })
 </script>
 

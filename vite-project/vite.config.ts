@@ -8,9 +8,9 @@ import { VantResolver } from "@vant/auto-import-resolver";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    VueRouter({}),
+    VueRouter({ exclude: "**/components" }),
     vue(),
-    AutoImport({ resolvers: [VantResolver()] }),
+    AutoImport({ dts: true, resolvers: [VantResolver()] }),
     Components({ dts: true, resolvers: [VantResolver()] }),
   ],
 });
