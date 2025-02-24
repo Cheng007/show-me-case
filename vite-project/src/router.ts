@@ -1,10 +1,14 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import routes from '~pages'
+import { createRouter, createWebHashHistory } from "vue-router";
+import { handleHotUpdate, routes } from "vue-router/auto-routes";
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
-})
+  routes,
+});
 
-export { routes }
-export default router
+if (import.meta.hot) {
+  handleHotUpdate(router);
+}
+
+export { routes };
+export default router;

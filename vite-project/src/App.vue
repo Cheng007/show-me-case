@@ -1,8 +1,12 @@
 <script setup lang="ts">
+import { computed } from 'vue';
 import { routes } from './router'
-import { useRouter } from 'vue-router'
-const router = useRouter()
-// router.replace(routes[0].path)
+
+const formatedRoutes = computed(() => {
+  return routes
+    .filter(i => !(i.name as string)?.includes('['))
+    .map(i => ({  ...i, name: (i.name as string)?.replace('/', '') }))
+})
 </script>
 
 <template>
@@ -11,7 +15,7 @@ const router = useRouter()
       <router-link
         custom
         v-slot="{ navigate, isActive }"
-        v-for="i of routes" :to="i.path"
+        v-for="i of formatedRoutes" :to="i.path"
       >
         <div @click="navigate" :class="isActive ? 'active' : ''">{{ i.name }}</div>
       </router-link>
