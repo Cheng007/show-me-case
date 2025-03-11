@@ -43,3 +43,4 @@ beforeUpdate
 - [history](./history/index.html)
 - [解决 flex 溢出](./flex-text-overflow/index.html)
 - [vue data 有值但未正确渲染-van-action-sheet](./vue-data-not-render/index.html)
+- [小说翻页](./page/index.html)
