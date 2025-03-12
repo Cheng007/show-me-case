@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+
+      >div {
+        height: 10vh;
+        background: #aaa;
+      }
+
+      >div:nth-child(2n) {
+        height: 20vh;
+        background: #12adff;
+      }
+
+      .sticky {
+        position: sticky;
+        top: 0;
+      }
+    }
+
+    .container {
+      overflow: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>sticky 不生效问题（待整理）</h1>
+  <div class="container">
+    <div class="wrap">
+      <div class="sticky">这是内容-需要sticky</div>
+      <div>这是内容</div>
+      <div>这是内容</div>
+      <div>这是内容</div>
+      <div>这是内容</div>
+      <div>这是内容</div>
+      <div>这是内容</div>
+      <div>这是内容</div>
+      <div>这是内容</div>
+      <div>这是内容</div>
+      <div>这是内容</div>
+      <div>这是内容</div>
+    </div>
+  </div>
+</body>
+
+</html>
