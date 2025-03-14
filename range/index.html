@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .highlight {
+      background-color: yellow;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>选中一部分文字</h1>
+  <p>hello world, may name is zhange, I like to go shopping while not busy. I used to get up early at 6 am and go home
+    by-anme
+    at 8 pm after work</p>
+  <p>I did not sleep well last night because of noice making by the car near my house</p>
+  <script>
+    document.addEventListener('click', (e) => {
+      const caretPosition = document.caretPositionFromPoint(e.clientX, e.clientY)
+      const range = document.createRange()
+      const word = getWordAtPosition(caretPosition.offsetNode.textContent, caretPosition.offset)
+      range.setStart(caretPosition.offsetNode, word.start)
+      range.setEnd(caretPosition.offsetNode, word.end)
+      highlightRange(range)
+    })
+    function highlightRange(range) {
+      // 检查 Range 的起始节点是否已经被包裹
+      const pNode = range.startContainer.parentNode
+      if (pNode.getAttribute('data-highlight-range-flag')) {
+        console.log('Already highlighted');
+        const text = range.startContainer
+
+        // 清除高亮
+        pNode.parentNode.replaceChild(text, pNode);
+        return;
+      }
+
+      // 创建 span 元素并添加样式类
+      const span = document.createElement('span');
+      span.className = 'highlight';
+      span.setAttribute('data-highlight-range-flag', 1);
+
+      // 用 span 包裹选中的文本
+      range.surroundContents(span);
+    }
+    function getWordAtPosition(text, position) {
+      const wordSeparators = /[\s\n\r.,!?;:'"-]/
+      if (position < 0 || position >= text.length) {
+        return ''
+      }
+
+      if (wordSeparators.test(text[position])) {
+        return ''
+      }
+
+      let left = position
+      let right = position
+      const separators = [' ', '\n']
+
+      // 向左移动指针，找到单词的起始位置
+      while (left >= 0 && !wordSeparators.test(text[left])) {
+        left--
+      }
+
+      // 向右移动指针，找到单词的结束位置
+      while (right < text.length && !wordSeparators.test(text[right])) {
+        right++
+      }
+
+      return {
+        word: text.slice(left + 1, right),
+        start: left + 1,
+        end: right
+      }
+    }
+  </script>
+</body>
+
+</html>

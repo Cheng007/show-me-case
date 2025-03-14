@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style type="text/css">
+    #test {
+      overflow: hidden;
+      margin: 50px auto;
+      width: 300px;
+      height: 300px;
+      border: 1px solid #ccc;
+    }
+
+    .one,
+    .two {
+      float: left;
+      margin: 10px;
+      width: 100px;
+      height: 100px;
+      text-align: center;
+      line-height: 100px;
+      font-size: 32px;
+    }
+
+    .one {
+      background-color: #ccc;
+    }
+
+    .two {
+      background-color: #999;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>touch events</h1>
+  <img src="./image.png" />
+  <div id="test">
+    <div class="one">one</div>
+    <div class="two">two</div>
+  </div>
+  <script>
+    var test = document.getElementById('test');
+    var one = document.querySelector('.one');
+    var two = document.querySelector('.two');
+
+    function addEvent(elem, type, showAll) {
+      type = type.split(' ');
+
+      type.forEach(function (item) {
+        elem.addEventListener(item, function (ev) {
+          console.log(showAll ? ev : ev.type);
+        });
+      });
+    }
+
+    addEvent(one, 'tap click touchstart touchmove touchend touchcancel swipe swipeLeft swipeRight swipeUp swipeDown longTap singleTap doubleTap', false);
+  </script>
+</body>
+
+</html>
