@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+    }
+    .head {
+      display: block;
+      position: sticky;
+      top: 0;
+      height: 40px;
+      border: 1px solid red;
+      background-image: radial-gradient(transparent 1px,#fff 1px);
+      background-size: 4px 4px;
+      backdrop-filter: saturate(50%) blur(4px);
+      -webkit-backdrop-filter: saturate(50%) blur(4px);
+    }
+    .head2 {
+      display: block;
+      position: sticky;
+      top: 40px;
+      height: 40px;
+      border: 1px solid red;
+      /* background-image: radial-gradient(transparent 1px,#fff 1px); */
+      /* background-size: 4px 4px; */
+      backdrop-filter: saturate(50%) blur(4px);
+      -webkit-backdrop-filter: saturate(50%) blur(4px);
+    }
+  </style>
+</head>
+<body>
+  <div class="head"></div>
+  <div class="head2"></div>
+  <div id="content">
+    <h2>这是标题</h2>
+    <p>这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容</p>
+  </div>
+  <script>
+    document.querySelector('#content').innerHTML = Array.from({ length: 1000 }).map(() => `<h2>这是标题</h2>
+    <p>这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容</p>`).join('')
+  </script>
+</body>
+</html>
