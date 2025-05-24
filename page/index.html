@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,19 +9,20 @@
     :root {
       --gap: 16px;
     }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    .wrapper{
+    .wrapper {
       height: 100vh;
       overflow: hidden;
       margin: 0 var(--gap);
     }
 
-    article{
+    article {
       columns: calc(100vw - var(--gap) * 2) 1;
       column-gap: var(--gap);
       height: 100%;
@@ -28,21 +30,23 @@
     }
   </style>
 </head>
+
 <body>
   <!-- <h1>小说分页功能</h1> -->
   <div class="wrapper">
     <article>
       <h3>第一章: 我不是小说</h3>
 
-      <p>在当今快速发展的科技时代，前端开发已经成为构建现代互联网应用的核心技能之一。无论是网页设计、移动应用开发，还是桌面应用程序，前端技术都扮演着至关重要的角色。本文将深入探讨前端开发的基础知识、常用工具以及未来发展趋势。</p>
+      <p>在当今快速发展的科技时代，前端开发已经成为构建现代互联网应用的核心技能之一。无论是网页设计、移动应用开发，还是桌面应用程序，前端技术都扮演着至关重要的角色。本文将深入探讨前端开发的基础知识、常用工具以及未来发展趋势。
+      </p>
     </article>
   </div>
 
   <script>
     const str = '在当今快速发展的科技时代，前端开发已经成为构建现代互联网应用的核心技能之一。无论是网页设计、移动应用开发，还是桌面应用程序，前端技术都扮演着至关重要的角色。本文将深入探讨前端开发的基础知识、常用工具以及未来发展趋势。'
-    
+
     const myArticle = document.querySelector('article');
-    Array.from({length: 100}).forEach((i, idx) => {
+    Array.from({ length: 100 }).forEach((i, idx) => {
       const p = document.createElement('p');
       p.innerText = str;
       const h = document.createElement('h3');
@@ -50,20 +54,20 @@
       myArticle.appendChild(h);
       myArticle.appendChild(p);
     })
-    
+
   </script>
   <script>
-    return false;
     let i = 0;
     let article = document.querySelector('article');
 
     setInterval(() => {
       let width = document.body.offsetWidth;
       i++;
-      if(i > 3) i = 0;
+      if (i > 3) i = 0;
 
       article.style.transform = `translateX(-${(width - 16) * i}px)`
     }, 5000);
   </script>
 </body>
+
 </html>

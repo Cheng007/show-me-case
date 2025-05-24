@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    textarea {
+      width: 90%;
+      height: 100px;
+    }
+    .bottom {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: gray;
+      padding: 10px;
+      padding-bottom: max(env(safe-area-inset-bottom), 10px);
+    }
+  </style>
+</head>
+<body>
+  安全区适配
+  <p>1、需要在 head 标签中添加 meta 标签，并设置 viewport-fit=cover 值</p>
+  <textarea>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover"
+    />
+  </textarea>
+  <p>2、safe-area-inset-top，safe-area-inset-right，safe-area-inset-bottom，safe-area-inset-left 四个属性可用来拿到距四边的安全距离，配合 env 使用即可</p>
+  <p>示例方式一：多加一个标签放底部</p>
+  <textarea>
+    <div>
+      <div>正文</div>
+      <div style="padding-bottom: env(safe-area-inset-bottom)"></div>
+    </div>
+    
+  </textarea>
+  <p>示例方式二：直接在目标元素上使用</p>
+  <textarea>
+    <div style="padding-bottom: max(env(safe-area-inset-bottom), 10px);"></div>
+  </textarea>
+
+  <div class="bottom">底部内容</div>
+</body>
+</html>
